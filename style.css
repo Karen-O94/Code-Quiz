@@ -1,0 +1,8 @@
+.startpage{
+    text-align: center;
+    padding: 60px;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+  }
