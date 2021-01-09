@@ -9,9 +9,46 @@
 //when game is over, it goes to another page for user to enter initials and save game
 
 //what to use? set interval, DOM manipulation, for loops, setInterval & clearInterval, functions and preventDefault
-document.getElementsByClassName("startBtn").addEventListener("click", function(){
-    alert("you've clicked the start button");
+
+//Variables
+var startQuiz = document.querySelector(".startBtn");
+var startCount = 60;
+var timerCount = document.getElementById("start-count");
+
+var allQuestions = [
+    {
+        questions: "Commonly used data types do NOT include ___",
+        answers: ["boolean", "numbers", "string", "prompts"],
+        correctAns: "prompts",
+    },
+    {
+        questions: "Which tag would you put your block of Javascript code?",
+        answers: ["<javascript>", "<js>", "<script>", "<section>"],
+        correctAns: "<script>",
+    },
+    {
+        questions: "What does HTML stand for?",
+        answers: ["HyperTech Markup Language", "HyperText Markup Language", "HypoText Mark Language"],
+        correctAns: "HyperText Markup Language",
+    },
+    {
+        questions: "Which property is used to change background colour?",
+        answers: ["background-colour", "bgcolor", "color"],
+        correctAns: "background-colour",
+    },
+    {
+        questions: "How do you call a function in Javascript?",
+        answers: ["function myFunction ()", "function: myFunction()", "myFunction ()"],
+        correctAns: "myFunction ()",
+    },
+]
+
+
+
+startBtn.addEventListener("click", function startQuiz() {
+    alert("Quiz has started")
 });
+
 
 // Questions
 // 1. Commonly used data types do NOT include ___
@@ -41,4 +78,15 @@ document.getElementsByClassName("startBtn").addEventListener("click", function()
 // - function: myFunction()
 // - myFunction ()
 
+//set timer - using variable starCount and timerCount
+
+function timerCountDown () {
+    var interval = setInterval( function () {
+        timerCount.textContent = startCount;
+        startCount--;
+        if (startCount === 0) {
+            clearInterval(interval);
+        };
+    }, 1000);
+};
 
