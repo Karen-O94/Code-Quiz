@@ -1,4 +1,4 @@
-// var startQuiz = document.getElementsByClassName("startBtn")
+
 //Pseudo code
 // When the 'Start Quiz' button is clicked, it should trigger a series of questions. 
 //Thus an event listener is required. You need to attach a click and a function
@@ -11,13 +11,16 @@
 //what to use? set interval, DOM manipulation, for loops, setInterval & clearInterval, functions and preventDefault
 
 //Variables
-var startPage = document.querySelector('.row-start');
-var questionPage = document.querySelector('#questionDiv')
+var mainPage = document.querySelector(".container-startpage")
+var startPage = document.querySelector(".row-start");
+var questionPage = document.querySelector('.questionDiv')
 var startBtn = document.querySelector(".startBtn");
 var questionItem = document.getElementById("question-item");
 var nextQuestion;
-var presentQuestion = 0;
+var presentQuestionIndex = 0;
 var startCount = 60;
+var notify = document.getElementById("notify");
+var counter = document.getElementById("counter");
 var timerCount = document.getElementById("start-count");
 var quizQuestion = document.querySelector("#quiz-questions");
 var quizAnswers = document.querySelector("#question-answers");
@@ -51,37 +54,19 @@ var allQuestions = [
 ];
 
 //Click event added vto start button to begin quiz
-startBtn.addEventListener("click",startQuiz);
+startBtn.addEventListener("click", startQuiz);
 
 //The startQuiz() function clears out the start page and begins to load the quiz questions
 
 function startQuiz() {
     startPage.classList.add("d-none");
     questionPage.classList.remove("d-none");
-    
-    nextQuestion = quizQuestion[presentQuestion];
-    startPage.appendChild(questionPage); 
-    displayQuestions(allQuestions);
+    nextQuestion = allQuestions[presentQuestionIndex]
+    mainPage.appendChild(questionPage);
+    displayQuestions(nextQuestion);
     timerCountDown();
 };
 
-function displayQuestions(allQuestions) {
-    var i = 0;
-
-   questionItem.innerText = allQuestions.question
-
-    var qOptions = allQuestions[i].options;
-    qOptions.forEach(function (item) {
-        var optionsBtn = document.createElement("button");
-        optionsBtn.className = "btn btn-dark";
-        optionsBtn.innerText = item;
-        quizAnswers.appendChild(optionsBtn);
-        //optionsBtn.addEventListener("click", disNxtQues);
-
-    });
-};
-
-//Timer function which countdowns as soon as the start button is clicked
 function timerCountDown() {
     var interval = setInterval(function () {
         timerCount.textContent = startCount;
@@ -91,9 +76,66 @@ function timerCountDown() {
         };
     }, 1000);
 };
+//The displayQuestions function prints out the quiz questions and multiple choice answers 
+function displayQuestions(obj) {
+    //var i = 0;
+    //questionItem.innerText = allQuestions[i].question
+    questionItem.innerText= obj.question
+    //var qOptions = allQuestions[i].options;
+    obj.options.forEach(element => {
+        var optionsBtn = document.createElement("button");
+        optionsBtn.className = "btn btn-dark";
+        optionsBtn.innerText = element;
+        quizAnswers.appendChild(optionsBtn);
+        optionsBtn.addEventListener("click", showNextQuestion);
 
+    });
+};
 
-// function replace() { 
-//     document.getElementById("").style.display="none"; 
-//     document.getElementById("div2").style.display="block"; 
-//     } 
+//This function shows the next series of questions when one of the multiple choice answers are clicked
+function showNextQuestion(e) {
+    presentQuestionIndex++
+
+    if (presentQuestionIndex < allQuestions.length){
+        isAnsCorrect(e.target.innerText == nextQuestion.correctAns)
+        quizAnswers.innerHTML=""
+        if (presentQuestionIndex < allQuestions.length) {
+            nextQuestion = allQuestions[presentQuestionIndex];
+            displayQuestions(nextQuestion);
+        } else {
+            presentQuestionIndex = 0
+            displayQuestions(nextQuestion);
+        }
+    }else{
+        gameEnd()
+    }
+}; 
+
+//Shows if user picked the correct answer or not
+function isAnsCorrect(userResponse){
+    
+    if(userResponse){
+        notify.innerText= "Correct!"
+    }else {
+        notify.innerText="Wrong!"
+        startCount = startCount -10
+        timerCount.innerHTML = startCount
+    }
+    setTimeout(function(){
+        notify.innerText=""
+    
+    }, 1000);
+}
+
+//this function ends the game
+function gameEnd (){
+    //adding and removing d-none class clears out the main div to allow user to write their name
+    counter.classList.add("d-none");
+    quizQuestion.classList.add("d-none");
+    startPage.classList.add("d-none");
+
+    var newElement = document.createElement("input");
+    newElement.setAttribute("type","name");
+    newElement.innerHTML = "Enter your name to save game score"
+    mainPage.appendChild(newElement);
+ };

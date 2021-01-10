@@ -28,7 +28,7 @@
                 <h6>View Highscores!</h6>
             </div>
             <div class="col-md-2">
-                <h6>Time: <span id="start-count">0</span></h6>
+                <h6 id="counter">Time: <span id="start-count">0</span></h6>
             </div>
         </div>
     </div>
@@ -42,12 +42,12 @@
                 <button type="button" class="startBtn btn-outline-secondary btn-lg">Start Quiz</button>
             </div>
         </div>
-        <div id="questionDiv">
-            <div class="quiz-questions d-none" id="quiz-questions">
-                <h2 class="text-info  text-center" id="question-item">text</h2>
+        <div class ="questionDiv">
+            <div class="quiz-questions" id="quiz-questions">
+                <h2 class="text-info  text-center" id="question-item"></h2>
                 <div class="answers mt-5 mb-5" id="question-answers">
                 </div>
-                <h1 id="alert"></h1>
+                <h6 id="notify"></h6>
             </div>
         </div>
     </div>
