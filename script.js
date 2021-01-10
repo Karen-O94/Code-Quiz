@@ -11,7 +11,7 @@
 //what to use? set interval, DOM manipulation, for loops, setInterval & clearInterval, functions and preventDefault
 
 //Variables
-var startPage = document.querySelector('.container-startpage');
+var startPage = document.querySelector('.row-start');
 var questionPage = document.querySelector('#questionDiv')
 var startBtn = document.querySelector(".startBtn");
 var questionItem = document.getElementById("question-item");
@@ -21,7 +21,6 @@ var startCount = 60;
 var timerCount = document.getElementById("start-count");
 var quizQuestion = document.querySelector("#quiz-questions");
 var quizAnswers = document.querySelector("#question-answers");
-var titleitem = document.getElementById("title-item");
 //Object holding all quiz questions, answers and correct answer
 var allQuestions = [
     {
@@ -51,10 +50,10 @@ var allQuestions = [
     },
 ];
 
-//Add click event to start button to playQuiz
+//Click event added vto start button to begin quiz
 startBtn.addEventListener("click",startQuiz);
 
-//Play Quiz function
+//The startQuiz() function clears out the start page and begins to load the quiz questions
 
 function startQuiz() {
     startPage.classList.add("d-none");
@@ -74,7 +73,7 @@ function displayQuestions(allQuestions) {
     var qOptions = allQuestions[i].options;
     qOptions.forEach(function (item) {
         var optionsBtn = document.createElement("button");
-        optionsBtn.className = "btn btn-primary";
+        optionsBtn.className = "btn btn-dark";
         optionsBtn.innerText = item;
         quizAnswers.appendChild(optionsBtn);
         //optionsBtn.addEventListener("click", disNxtQues);
@@ -82,6 +81,7 @@ function displayQuestions(allQuestions) {
     });
 };
 
+//Timer function which countdowns as soon as the start button is clicked
 function timerCountDown() {
     var interval = setInterval(function () {
         timerCount.textContent = startCount;
@@ -92,10 +92,8 @@ function timerCountDown() {
     }, 1000);
 };
 
-// function startQuiz (arr) {
-//     var questionHolder= document.createElement("div");
-//     var displayQuestion = document.createTextNode(que)
 
-// }
-
-//set timer - using variable starCount and timerCount
+// function replace() { 
+//     document.getElementById("").style.display="none"; 
+//     document.getElementById("div2").style.display="block"; 
+//     } 
