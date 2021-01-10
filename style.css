@@ -1,8 +1,15 @@
-.startpage{
+.startpage2{
     text-align: center;
     padding: 60px;
 }
-.button-container {
+.row-button {
     display: flex;
     justify-content: center;
-  }
+  };
+
+.questionDiv {
+    height: 1366px;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+}

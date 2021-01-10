@@ -11,77 +11,79 @@
 //what to use? set interval, DOM manipulation, for loops, setInterval & clearInterval, functions and preventDefault
 
 //Variables
-var startQuiz = document.querySelector(".startBtn");
+var startPage = document.querySelector('.container-startpage');
+var questionPage = document.querySelector('#questionDiv')
+var startBtn = document.querySelector(".startBtn");
+var questionItem = document.getElementById("question-item");
+var nextQuestion;
+var presentQuestion = 0;
 var startCount = 60;
 var timerCount = document.getElementById("start-count");
-
+var quizQuestion = document.querySelector("#quiz-questions");
+var quizAnswers = document.querySelector("#question-answers");
+var titleitem = document.getElementById("title-item");
+//Object holding all quiz questions, answers and correct answer
 var allQuestions = [
     {
-        questions: "Commonly used data types do NOT include ___",
-        answers: ["boolean", "numbers", "string", "prompts"],
+        question: "Commonly used data types do NOT include ___",
+        options: ["boolean", "numbers", "string", "prompts"],
         correctAns: "prompts",
     },
     {
-        questions: "Which tag would you put your block of Javascript code?",
-        answers: ["<javascript>", "<js>", "<script>", "<section>"],
+        question: "Which tag would you put your block of Javascript code?",
+        options: ["<javascript>", "<js>", "<script>", "<section>"],
         correctAns: "<script>",
     },
     {
-        questions: "What does HTML stand for?",
-        answers: ["HyperTech Markup Language", "HyperText Markup Language", "HypoText Mark Language"],
+        question: "What does HTML stand for?",
+        options: ["HyperTech Markup Language", "HyperText Markup Language", "HypoText Mark Language"],
         correctAns: "HyperText Markup Language",
     },
     {
-        questions: "Which property is used to change background colour?",
-        answers: ["background-colour", "bgcolor", "color"],
+        question: "Which property is used to change background colour?",
+        options: ["background-colour", "bgcolor", "color"],
         correctAns: "background-colour",
     },
     {
-        questions: "How do you call a function in Javascript?",
-        answers: ["function myFunction ()", "function: myFunction()", "myFunction ()"],
+        question: "How do you call a function in Javascript?",
+        options: ["function myFunction ()", "function: myFunction()", "myFunction ()"],
         correctAns: "myFunction ()",
     },
-]
+];
 
+//Add click event to start button to playQuiz
+startBtn.addEventListener("click",startQuiz);
 
+//Play Quiz function
 
-startBtn.addEventListener("click", function startQuiz() {
-    alert("Quiz has started")
-});
+function startQuiz() {
+    startPage.classList.add("d-none");
+    questionPage.classList.remove("d-none");
+    
+    nextQuestion = quizQuestion[presentQuestion];
+    startPage.appendChild(questionPage); 
+    displayQuestions(allQuestions);
+    timerCountDown();
+};
 
+function displayQuestions(allQuestions) {
+    var i = 0;
 
-// Questions
-// 1. Commonly used data types do NOT include ___
-// -boolean
-// -numbers
-// -String
-// -prompts
+   questionItem.innerText = allQuestions.question
 
-// 2.Which tag would you put your block of Javascript code?
-// - <javascript>
-// - <js>
-// - <script>
-// - <section>
+    var qOptions = allQuestions[i].options;
+    qOptions.forEach(function (item) {
+        var optionsBtn = document.createElement("button");
+        optionsBtn.className = "btn btn-primary";
+        optionsBtn.innerText = item;
+        quizAnswers.appendChild(optionsBtn);
+        //optionsBtn.addEventListener("click", disNxtQues);
 
-// 3. What does HTML stand for?
-// - HyperTech Markup Language
-// -HyperText Markup Language
-// - HypoText Mark Language
+    });
+};
 
-// 4. Which property is used to change background colour?
-// -background-colour
-// -bgcolor
-// -color
-
-// 5.How do you call a function in Javascript?
-// - function myFunction ()
-// - function: myFunction()
-// - myFunction ()
-
-//set timer - using variable starCount and timerCount
-
-function timerCountDown () {
-    var interval = setInterval( function () {
+function timerCountDown() {
+    var interval = setInterval(function () {
         timerCount.textContent = startCount;
         startCount--;
         if (startCount === 0) {
@@ -90,3 +92,10 @@ function timerCountDown () {
     }, 1000);
 };
 
+// function startQuiz (arr) {
+//     var questionHolder= document.createElement("div");
+//     var displayQuestion = document.createTextNode(que)
+
+// }
+
+//set timer - using variable starCount and timerCount

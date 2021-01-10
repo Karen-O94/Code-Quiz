@@ -10,16 +10,18 @@
     <!-- Bootstrap CSS link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-        <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Coding Quiz!</a>
+            <a class="navbar-brand" href="#">Coding Quiz!</a>
         </div>
-      </nav>
+    </nav>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10">
@@ -30,25 +32,34 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container-startpage">
         <div class="row">
-            <div class="startpage col-md-12">
+            <div class="startpage2 col-md-12">
                 <h1>Coding Quiz Challenge!</h1>
                 <p>Click the start button below to see if you are a Coding Maestro!</p>
             </div>
         </div>
-    </div>
-    <div class="button-container">
-        <div class="row-button">
-            <div class="col-md-12">
+        <div class="row-button col-md-12">
                 <button type="button" class="startBtn btn-outline-secondary btn-lg">Start Quiz</button>
+        </div>
+        <div id="questionDiv">
+            <div class="quiz-questions d-none" id="quiz-questions">
+                <h2 class="text-info  text-center" id="question-item">text</h2>
+                <div class="answers mt-5 mb-5" id="question-answers">
+                </div>
+                <h1 id="alert"></h1>
             </div>
         </div>
     </div>
 
+
+    <!-- <div class="button-container">
+
+    </div> -->
+
     <!--Calling functions-->
-      <!--Link to Personal external Javascript file -->
-      <script type="text/JavaScript" src="script.js"></script>
+    <!--Link to Personal external Javascript file -->
+    <script type="text/JavaScript" src="script.js"></script>
 </body>
 
 </html>
